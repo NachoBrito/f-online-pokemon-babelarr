@@ -11,10 +11,9 @@ class PokemonList extends React.Component {
                 {
                     pokemons.map(pokemonItem => {
                         return (
-                            <li key={pokemonItem.name}>
+                            <li key={pokemonItem.id}>
                                 {/* <PokemonCard/> */}
                                 {pokemonItem.name}
-                                {pokemonItem.url.id}
                             </li>
                         );
                     }

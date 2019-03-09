@@ -16,17 +16,25 @@ class App extends Component {
     this.getPokeChars = this.getPokeChars.bind(this);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.getPokeChars();
   }
 
   getPokeChars() {
+    let urlResults = [];
+
     getPokemons()
     .then(data => {
-      this.setState({
-        results: data.results
-      })
-      console.log(data.results);
+      data.results.map(item => {
+        let urlObjPokemon = fetch(item.url).then(response => response.json());
+        
+        urlObjPokemon.then(data => {
+          urlResults.push(data);
+          this.setState({
+            results: urlResults.sort(((a, b) => a.id - b.id))
+          });
+        });
+      });
     });
   }
 
@@ -35,7 +43,10 @@ class App extends Component {
       <React.Fragment>
         <h1>Mi lista de Pokemons</h1>
         <InputFilter/>
-        <PokemonList pokemons={this.state.results}/>
+        {
+          this.state.results &&
+          <PokemonList pokemons={this.state.results}/>
+        }
       </React.Fragment>
     );
   }
