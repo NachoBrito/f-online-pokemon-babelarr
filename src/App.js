@@ -31,7 +31,7 @@ class App extends Component {
       data.results.map(item => {
         let urlObjPokemon = fetch(item.url).then(response => response.json());
         
-        urlObjPokemon.then(data => {
+        return urlObjPokemon.then(data => {
           urlResults.push(data);
           this.setState({
             results: urlResults.sort(((a, b) => a.id - b.id))

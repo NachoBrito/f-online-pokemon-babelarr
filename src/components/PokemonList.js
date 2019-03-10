@@ -12,7 +12,7 @@ class PokemonList extends React.Component {
                     pokemons.map(pokemonItem => {
                         return (
                             <li key={pokemonItem.id}>
-                                <PokemonCard name={pokemonItem.name} img={pokemonItem.sprites.front_default} types={pokemonItem.types}/>   
+                                <PokemonCard name={pokemonItem.name} id={pokemonItem.id} img={pokemonItem.sprites.front_default} types={pokemonItem.types}/>   
                             </li>
                         );
                     }
