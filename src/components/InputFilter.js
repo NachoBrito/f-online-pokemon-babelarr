@@ -1,22 +1,20 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
-  root:{
-    flexGrow: 1,
-    maxWidth: 700,
-    margin: "0 auto"
+  widthStyle: {
+    margin:  `0 ${theme.spacing.unit * 3}px`,
+    display: "flex",
+    justifyContent: "center"
   },
   textField: {
-    margin: theme.spacing.unit,
+    maxWidth: 700,
     padding: theme.spacing.unit,
     backgroundColor: "white",
-    boxShadow: "0 0 10px #666",
-    textAlign: "center"
-  },
+    boxShadow: "0 0 10px #666"
+    }
 });
 
 class InputFilter extends Component {
@@ -24,17 +22,15 @@ class InputFilter extends Component {
     const { keyupAction, classes } = this.props;
 
     return (
-        <Grid container className={classes.root}>
-          <Grid item xs={12}>
-            <TextField
-              placeholder="Busca tus pokemons favoritos"
-              className={classes.textField}
-              margin="normal"
-              onChange={keyupAction}
-              fullWidth
-            />
-          </Grid>
-        </Grid>
+      <div className={classes.widthStyle}>
+        <TextField
+          placeholder="Busca tus pokemons favoritos"
+          className={classes.textField}
+          margin="normal"
+          onChange={keyupAction}
+          fullWidth
+        />
+      </div>
     );
   }
 }

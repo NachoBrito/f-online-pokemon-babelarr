@@ -50,7 +50,12 @@ const styles = theme => ({
     backgroundColor: "red",
     borderRadius: "50%"
   },
-  
+  mainContent: {
+    maxWidth: 900,
+    margin: "auto",
+    position: "relative",
+    zIndex: 1
+  }
  });
 
 const themeApp = createMuiTheme({
@@ -144,20 +149,21 @@ class App extends Component {
         <CssBaseline />
         <MuiThemeProvider theme={themeApp}>
           <div className={classes.bgPikachu}>
-          <div className={classes.triangleLeft}></div>
-          <div className={classes.triangleRight}></div>
-          <div className={classes.circleLeft}></div>
-          <div className={classes.circleRight}></div>
-
-            <Header />
-            <main>
-              <InputFilter keyupAction={this.getQuery}/>
-              {
-                this.state.results &&
-                <PokemonList pokemons={charResults}/>
-              }
-            </main>
-            <Footer />
+            <div className={classes.triangleLeft}></div>
+            <div className={classes.triangleRight}></div>
+            <div className={classes.circleLeft}></div>
+            <div className={classes.circleRight}></div>
+            <div className={classes.mainContent}>
+              <Header />
+              <main className={classes.mainContainer}>
+                <InputFilter keyupAction={this.getQuery}/>
+                {
+                  this.state.results &&
+                  <PokemonList pokemons={charResults}/>
+                }
+              </main>
+              <Footer />
+            </div>
           </div>        
         </MuiThemeProvider>
       </React.Fragment>

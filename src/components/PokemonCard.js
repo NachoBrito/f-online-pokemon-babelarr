@@ -52,13 +52,13 @@ class PokemonCard extends React.Component {
                         </Typography>
                     </CardContent>
 
-                    <CardActions component="ul">
+                    <CardActions>
                         {types.map((type, index)=>{
                             let labelChip = type.type.name;
                             labelChip = labelChip.toUpperCase();
 
                             return (
-                                <Chip key={index} component="li" variant="outlined" label={labelChip} className={classes.chip} />
+                                <Chip key={index} variant="outlined" label={labelChip} className={classes.chip} />
                             );
                         })}
                     </CardActions>
