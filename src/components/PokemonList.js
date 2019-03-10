@@ -8,10 +8,9 @@ const styles = theme => ({
     root: {
       flexGrow: 1,
       listStyleType: "none",
-      margin: 0,
       padding: 0,
-      maxWidth: 900
-
+      maxWidth: 900,
+      margin: "0 auto"
     }
   });
 

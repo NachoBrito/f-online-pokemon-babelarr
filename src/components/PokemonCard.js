@@ -16,15 +16,15 @@ const styles = theme => ({
         height: 100,
         width: 100,
         margin:'0 auto',
-        padding: `${theme.spacing.unit * 5}px`,
+        padding: theme.spacing.unit * 5,
     },
     chip: {
         margin: theme.spacing.unit,
     },
     idPokemon:{
-        padding:`${theme.spacing.unit}px`,
+        padding: theme.spacing.unit,
         backgroundColor: "grey",
-        width: 70,
+        width: 50,
         textAlign: "center"
     }
   });
@@ -32,6 +32,8 @@ const styles = theme => ({
 class PokemonCard extends React.Component {
     render() {
         const { name, img, id, types, classes } = this.props;
+
+        const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
 
         return (
                 <Card>
@@ -41,19 +43,22 @@ class PokemonCard extends React.Component {
                             image={img}
                             title="Imagen de un pokemon" />
 
-                        <Typography gutterBottom component="p" className={classes.idPokemon}>ID/{id}</Typography>
+                        <Typography gutterBottom component="p" variant="caption" className={classes.idPokemon}>ID/{id}</Typography>
                     </div>
                     
                     <CardContent>
                         <Typography gutterBottom variant="title" component="h2">
-                            {name}
+                            {nameCapitalized}
                         </Typography>
                     </CardContent>
 
                     <CardActions component="ul">
                         {types.map((type, index)=>{
+                            let labelChip = type.type.name;
+                            labelChip = labelChip.toUpperCase();
+
                             return (
-                                <Chip key={index} component="li" label={type.type.name} className={classes.chip} />
+                                <Chip key={index} component="li" variant="outlined" label={labelChip} className={classes.chip} />
                             );
                         })}
                     </CardActions>

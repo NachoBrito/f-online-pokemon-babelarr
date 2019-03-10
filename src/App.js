@@ -1,9 +1,57 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {getPokemons} from './services/pokemonServices';
 import PokemonList from './components/PokemonList';
 import InputFilter from './components/InputFilter';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  bgPikachu: {
+      backgroundColor: "yellow",
+      minHeight: "100vh"
+  },
+  triangleLeft: {
+    position: "fixed",
+    width: 60,
+    height: 60,
+    top: -30,
+    left: -30,
+    backgroundColor: "black",
+    transform: "rotate(45deg)"
+  },
+  triangleRight: {
+    position: "fixed",
+    width: 60,
+    height: 60,
+    top: -30,
+    right: -30,
+    backgroundColor: "black",
+    transform: "rotate(45deg)"
+  },
+  circleLeft: {
+    position: "fixed",
+    width: 150,
+    height: 150,
+    bottom: -75,
+    left: -75,
+    backgroundColor: "red",
+    borderRadius: "50%"
+  },
+  circleRight: {
+    position: "fixed",
+    width: 150,
+    height: 150,
+    bottom: -75,
+    right: -75,
+    backgroundColor: "red",
+    borderRadius: "50%"
+  },
+  
+ });
 
 const themeApp = createMuiTheme({
   palette: {
@@ -26,7 +74,7 @@ const themeApp = createMuiTheme({
       'sans-serif'
     ].join(','),
     fontSize: 16
-  }
+  },
 });
 
 class App extends Component {
@@ -89,20 +137,36 @@ class App extends Component {
 
   render() {
     const charResults = this.filterThis();
+    const { classes } = this.props;
+
     return (
       <React.Fragment>
         <CssBaseline />
         <MuiThemeProvider theme={themeApp}>
-          <h1>Mi lista de Pokemons</h1>
-          <InputFilter keyupAction={this.getQuery}/>
-          {
-            this.state.results &&
-            <PokemonList pokemons={charResults}/>
-          }
+          <div className={classes.bgPikachu}>
+          <div className={classes.triangleLeft}></div>
+          <div className={classes.triangleRight}></div>
+          <div className={classes.circleLeft}></div>
+          <div className={classes.circleRight}></div>
+
+            <Header />
+            <main>
+              <InputFilter keyupAction={this.getQuery}/>
+              {
+                this.state.results &&
+                <PokemonList pokemons={charResults}/>
+              }
+            </main>
+            <Footer />
+          </div>        
         </MuiThemeProvider>
       </React.Fragment>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(App);
