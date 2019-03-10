@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
     txt: {
         textAlign: "center",
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing.unit * 2,
+        margin: 0
     }
   });
 
@@ -16,10 +17,10 @@ class Footer extends Component {
   
       return (
         <footer>
-        <Typography gutterBottom component="p" className={classes.txt}>
-            Desarrollado por Laura Sánchez Redondo | Adalab © 2019
-        </Typography>
-      </footer>
+          <Typography gutterBottom component="p" className={classes.txt}>
+              Desarrollado por Laura Sánchez Redondo | Adalab © 2019
+          </Typography>
+        </footer>
       );
     }
   }

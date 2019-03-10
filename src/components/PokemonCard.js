@@ -10,7 +10,7 @@ import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({
     card:{
-        backgroundColor: "lightGrey",
+        backgroundColor: "#dddddd",
     },
     media: {
         height: 100,
@@ -21,11 +21,14 @@ const styles = theme => ({
     chip: {
         margin: theme.spacing.unit,
     },
-    idPokemon:{
+    idPokemon: {
         padding: theme.spacing.unit,
-        backgroundColor: "grey",
+        backgroundColor: "#cccccc",
         width: 50,
         textAlign: "center"
+    },
+    pokemonName: {
+        padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px 0 ${theme.spacing.unit * 2}px`,
     }
   });
 
@@ -45,12 +48,10 @@ class PokemonCard extends React.Component {
 
                         <Typography gutterBottom component="p" variant="caption" className={classes.idPokemon}>ID/{id}</Typography>
                     </div>
-                    
-                    <CardContent>
-                        <Typography gutterBottom variant="title" component="h2">
-                            {nameCapitalized}
-                        </Typography>
-                    </CardContent>
+
+                    <Typography gutterBottom variant="title" component="h2" className={classes.pokemonName}>
+                        {nameCapitalized}
+                    </Typography>
 
                     <CardActions>
                         {types.map((type, index)=>{

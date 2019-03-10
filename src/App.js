@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   bgPikachu: {
-      backgroundColor: "yellow",
+      backgroundColor: "#fee444",
       minHeight: "100vh"
   },
   triangleLeft: {
@@ -38,7 +38,7 @@ const styles = theme => ({
     height: 150,
     bottom: -75,
     left: -75,
-    backgroundColor: "red",
+    backgroundColor: "#e72d32",
     borderRadius: "50%"
   },
   circleRight: {
@@ -47,30 +47,35 @@ const styles = theme => ({
     height: 150,
     bottom: -75,
     right: -75,
-    backgroundColor: "red",
+    backgroundColor: "#e72d32",
     borderRadius: "50%"
   },
   mainContent: {
-    maxWidth: 900,
     margin: "auto",
     position: "relative",
-    zIndex: 1
+    zIndex: 1,
+    [theme.breakpoints.down('md')]: {
+      maxWidth: 600
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 900
+    },
   }
  });
 
 const themeApp = createMuiTheme({
   palette: {
     primary: {
-      light: '#ad33ad',
-      main: '#990099',
-      dark: '#6b006b',
+      light: '#000',
+      main: '#000',
+      dark: '#000',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#5b5b5b',
-      main: '#333333',
-      dark: '#232323',
-      contrastText: '#fff',
+      light: '#fff',
+      main: '#fff',
+      dark: '#fff',
+      contrastText: '#000',
     },
   },
   typography: {

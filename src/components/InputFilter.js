@@ -1,20 +1,23 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   widthStyle: {
-    margin:  `0 ${theme.spacing.unit * 3}px`,
+    margin: `0 ${theme.spacing.unit * 3}px`,
     display: "flex",
     justifyContent: "center"
   },
   textField: {
+    width: "100%",
     maxWidth: 700,
-    padding: theme.spacing.unit,
+    margin: `${theme.spacing.unit * 3}px 0`,
     backgroundColor: "white",
-    boxShadow: "0 0 10px #666"
-    }
+    padding: theme.spacing.unit * 2,
+    border: "unset",
+    boxShadow: "0 0 10px #666",
+    fontSize: 16
+  }
 });
 
 class InputFilter extends Component {
@@ -23,12 +26,11 @@ class InputFilter extends Component {
 
     return (
       <div className={classes.widthStyle}>
-        <TextField
+        <input
+          type="text"
           placeholder="Busca tus pokemons favoritos"
           className={classes.textField}
-          margin="normal"
           onChange={keyupAction}
-          fullWidth
         />
       </div>
     );
