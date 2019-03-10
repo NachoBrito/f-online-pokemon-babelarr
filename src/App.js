@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import {getPokemons} from './services/pokemonServices';
 import PokemonList from './components/PokemonList';
 import InputFilter from './components/InputFilter';
-import './App.css';
+
+const themeApp = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ad33ad',
+      main: '#990099',
+      dark: '#6b006b',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#5b5b5b',
+      main: '#333333',
+      dark: '#232323',
+      contrastText: '#fff',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Roboto',
+      'sans-serif'
+    ].join(','),
+    fontSize: 16
+  }
+});
 
 class App extends Component {
-  
   constructor(props) {
     super(props);
 
@@ -67,12 +91,15 @@ class App extends Component {
     const charResults = this.filterThis();
     return (
       <React.Fragment>
-        <h1>Mi lista de Pokemons</h1>
-        <InputFilter keyupAction={this.getQuery}/>
-        {
-          this.state.results &&
-          <PokemonList pokemons={charResults}/>
-        }
+        <CssBaseline />
+        <MuiThemeProvider theme={themeApp}>
+          <h1>Mi lista de Pokemons</h1>
+          <InputFilter keyupAction={this.getQuery}/>
+          {
+            this.state.results &&
+            <PokemonList pokemons={charResults}/>
+          }
+        </MuiThemeProvider>
       </React.Fragment>
     );
   }

@@ -1,26 +1,46 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import PokemonCard from "./PokemonCard";
+
+const styles = theme => ({
+    root: {
+      flexGrow: 1,
+      listStyleType: "none",
+      margin: 0,
+      padding: 0,
+      maxWidth: 900
+
+    }
+  });
 
 class PokemonList extends React.Component {
 
     render() {
-        const { pokemons } = this.props;
+        const { pokemons, classes } = this.props;
 
         return (
-                <ul>
-                {
-                    pokemons.map(pokemonItem => {
-                        return (
-                            <li key={pokemonItem.id}>
-                                <PokemonCard name={pokemonItem.name} id={pokemonItem.id} img={pokemonItem.sprites.front_default} types={pokemonItem.types}/>   
-                            </li>
-                        );
-                    }
-                    ) 
+            <Grid container className={classes.root} spacing={16} component="ul">
+            {
+                pokemons.map(pokemonItem => {
+                    return (
+                        <Grid item xs={12} sm={4} md={3} key={pokemonItem.id} className={classes.item} component="li">
+                            <PokemonCard name={pokemonItem.name} id={pokemonItem.id} img={pokemonItem.sprites.front_default} types={pokemonItem.types}/>   
+                        </Grid>
+                    );
                 }
-                </ul>
+                ) 
+            }
+            </Grid>
         );
     }
 }
 
-export default PokemonList;
+
+PokemonList.propTypes = {
+    pokemons: PropTypes.array.isRequired,
+    classes: PropTypes.object.isRequired,
+  };
+  
+export default withStyles(styles)(PokemonList);
