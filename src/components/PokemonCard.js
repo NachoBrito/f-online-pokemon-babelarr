@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 class PokemonCard extends React.Component {
     render() {
-        const { name, types, url } = this.props;
+        const { name, img, types } = this.props;
 
         return (
                 <div>
-                    <img className="img" src= {url} alt= 'Imagen de un pokemon'/>
-                    <h2 className="title__pokemon">{name}</h2>
+                    <img src= {img} alt= 'Imagen de un pokemon'/>
+                    <h2>{name}</h2>
 
-                    <ul className="types">
+                    <ul>
                         {types.map((type, index)=>{
                             return (
-                            <li className="type" key={index}>
-                                {type}
+                            <li key={index}>
+                                {type.type.name}
                             </li>
                             );
                         })}
