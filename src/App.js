@@ -10,10 +10,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      results: []
+      results: [],
+      query: ''
     };
 
     this.getPokeChars = this.getPokeChars.bind(this);
+    this.filterThis = this.filterThis.bind(this);
+    this.getQuery = this.getQuery.bind(this);
   }
 
   componentWillMount() {
@@ -38,14 +41,37 @@ class App extends Component {
     });
   }
 
+  getQuery(e) {
+    const userQuery= e.currentTarget.value;
+    this.setState({
+      query: userQuery
+    });
+  }
+
+
+  filterThis() {
+    const filteredResults = this.state.results.filter(item => {
+      const filterName = item.name;
+
+      if(filterName.toLowerCase().includes(this.state.query.toLowerCase())) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    return filteredResults;
+  }
+
   render() {
+    const charResults = this.filterThis();
     return (
       <React.Fragment>
         <h1>Mi lista de Pokemons</h1>
-        <InputFilter/>
+        <InputFilter keyupAction={this.getQuery}/>
         {
           this.state.results &&
-          <PokemonList pokemons={this.state.results}/>
+          <PokemonList pokemons={charResults}/>
         }
       </React.Fragment>
     );

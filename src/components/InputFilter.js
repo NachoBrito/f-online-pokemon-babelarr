@@ -4,7 +4,7 @@ class InputFilter extends Component {
   render() {
     return (
         <div>
-          <input type="text" placeholder="Busca tus pokemons favoritos"/>
+          <input type="text" onKeyUp={this.props.keyupAction} placeholder="Busca tus pokemons favoritos"/>
         </div>
     );
   }
